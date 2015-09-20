@@ -1,0 +1,2 @@
+pwd=.\grammar\
+java -jar ..\lib\antlr-4.5.1-complete.jar -package parser -o ..\src\parser -no-listener -visitor .\Huga.g4

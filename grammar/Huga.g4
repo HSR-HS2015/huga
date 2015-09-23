@@ -23,7 +23,7 @@ unary_expression
 
 primary_expression
 	: forward=NUMBER #forward_number
-	| '(' expression ')' #parenthesis
+	| '(' forward=expression ')' #parenthesis
 	;
 
 NUMBER

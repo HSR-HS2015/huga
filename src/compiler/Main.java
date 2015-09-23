@@ -41,5 +41,28 @@ public class Main {
 		
 		System.out.println(new Visitor().visit(tree));
 	}
+	
+	public static String compile(ANTLRInputStream input) {
+		HugaLexer lexer = new HugaLexer(input);
+		CommonTokenStream tokens = new CommonTokenStream(lexer);
+		HugaParser parser = new HugaParser(tokens);
+		
+		ParseTree tree = parser.expression();
+		return createJasminFile(new Visitor().visit(tree));
+	}
+	
+	
+	private static String createJasminFile(String instr) {
+		return 	".class public Program\n" +
+				".super java/lang/Object\n" +
+				".method public static main([Ljava/lang/String;)V\n" +
+				".limit stack 100\n" +
+				".limit locals 100\n" +
+				"getstatic java/lang/System/out Ljava/io/PrintStream;\n" +
+				instr + 
+				"invokevirtual java/io/PrintStream/println(I)V\n" +
+				"return\n" + 
+				".end method\n";
+	}
 
 }

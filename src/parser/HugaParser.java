@@ -497,6 +497,7 @@ public class HugaParser extends Parser {
 		}
 	}
 	public static class ParenthesisContext extends Primary_expressionContext {
+		public ExpressionContext forward;
 		public ExpressionContext expression() {
 			return getRuleContext(ExpressionContext.class,0);
 		}
@@ -529,7 +530,7 @@ public class HugaParser extends Parser {
 				setState(46);
 				match(T__4);
 				setState(47);
-				expression();
+				((ParenthesisContext)_localctx).forward = expression();
 				setState(48);
 				match(T__5);
 				}

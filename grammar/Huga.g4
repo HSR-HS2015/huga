@@ -1,5 +1,30 @@
 grammar Huga;
 
+statement_list
+	: forward=statement #forward_statement
+	| left=statement_list right=statement #statement_list_loop
+	;
+	
+statement
+	: ';' #empty_statement
+	| forward=expression ';' #forward_expression
+	| forward=declaration ';' #forward_declaration
+	| forward=assignment ';' #forward_assignment
+	| forward=println ';' #forward_println
+	;
+
+declaration
+	: 'INT' identifier=IDENTIFIER #declaration_statement
+	;
+	
+assignment
+	: identifier=IDENTIFIER '=' expr=expression #assignment_statement
+	;
+	
+println
+	: 'println(' expr=expression ')' #println_statement
+	;
+
 expression
 	: forward=additive_expression #forward_additive_expression
 	;
@@ -23,9 +48,18 @@ unary_expression
 
 primary_expression
 	: forward=NUMBER #forward_number
+	| identifier=IDENTIFIER #variable
 	| '(' forward=expression ')' #parenthesis
 	;
 
 NUMBER
 	: [1-9][0-9]*
+	;
+	
+IDENTIFIER
+	: [a-zA-Z][a-zA-Z0-9]*
+	;
+	
+WHITESPACE
+	: [ \t\n\r]+ -> skip
 	;

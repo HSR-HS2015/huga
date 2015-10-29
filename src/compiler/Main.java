@@ -17,14 +17,14 @@ public class Main {
 
 	public static void main(String[] args) {
 		
-		code = "-(3*(1+4)/5)";
+		code = "INT b; b = 7; println(b);";
 		
 		ANTLRInputStream input = new ANTLRInputStream(code);
 		HugaLexer lexer = new HugaLexer(input);
 		CommonTokenStream tokens = new CommonTokenStream(lexer);
 		HugaParser parser = new HugaParser(tokens);
 		
-		ParseTree tree = parser.expression();
+		ParseTree tree = parser.statement_list();
 		
 		if(showParseTree) {
 			SwingUtilities.invokeLater(new Runnable(){
@@ -47,7 +47,7 @@ public class Main {
 		CommonTokenStream tokens = new CommonTokenStream(lexer);
 		HugaParser parser = new HugaParser(tokens);
 		
-		ParseTree tree = parser.expression();
+		ParseTree tree = parser.statement_list();
 		return createJasminFile(new Visitor().visit(tree));
 	}
 	
@@ -58,9 +58,7 @@ public class Main {
 				".method public static main([Ljava/lang/String;)V\n" +
 				".limit stack 100\n" +
 				".limit locals 100\n" +
-				"getstatic java/lang/System/out Ljava/io/PrintStream;\n" +
 				instr + 
-				"invokevirtual java/io/PrintStream/println(I)V\n" +
 				"return\n" + 
 				".end method\n";
 	}

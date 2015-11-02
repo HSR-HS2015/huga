@@ -30,7 +30,7 @@ public class HugaParser extends Parser {
 	};
 
 	private static final String[] _LITERAL_NAMES = {
-		null, "';'", "'INT'", "'='", "'println('", "')'", "'+'", "'-'", "'*'", 
+		null, "';'", "'VAR INT'", "'='", "'println('", "')'", "'+'", "'-'", "'*'", 
 		"'/'", "'('"
 	};
 	private static final String[] _SYMBOLIC_NAMES = {

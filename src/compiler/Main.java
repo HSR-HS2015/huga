@@ -17,7 +17,7 @@ public class Main {
 
 	public static void main(String[] args) {
 		
-		code = "INT b; b = 7; println(b);";
+		code = "VAR INT b; b = 7; println(b);";
 		
 		ANTLRInputStream input = new ANTLRInputStream(code);
 		HugaLexer lexer = new HugaLexer(input);

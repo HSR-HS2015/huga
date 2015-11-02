@@ -14,7 +14,7 @@ statement
 	;
 
 declaration
-	: 'INT' identifier=IDENTIFIER #declaration_statement
+	: 'VAR INT' identifier=IDENTIFIER #declaration_statement
 	;
 	
 assignment
